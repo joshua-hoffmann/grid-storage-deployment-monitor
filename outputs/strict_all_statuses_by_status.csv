@@ -1,0 +1,5 @@
+status,generator_rows,unique_plants,capacity_mw,energy_capacity_mwh,missing_generator_id
+Planned,338,319,30611.0,0.0,1
+Operating,563,536,15396.2,26323.5,0
+Other,40,38,2226.1,0.0,0
+Retired,30,28,136.3,160.4,0
