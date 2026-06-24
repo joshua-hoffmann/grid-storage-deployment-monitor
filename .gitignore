@@ -27,3 +27,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Internal local project snapshots
+PROJECT_STATUS_SNAPSHOT.md
