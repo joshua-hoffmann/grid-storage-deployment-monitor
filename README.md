@@ -1,46 +1,104 @@
 ﻿# Grid Storage Deployment Monitor
 
-A source-boundary constrained data pipeline for processing EIA-860M generator data and identifying battery storage records under a strict classification rule.
+A validation-first data pipeline for turning EIA-860M generator records into a strict, source-boundary constrained battery storage inventory layer.
 
-## Current scope
+The project focuses on one narrow but important problem:
 
-This repository currently focuses on:
+> How can battery storage generator records be identified, separated by status, and summarized without overstating what the source data can support?
 
-- resolving and downloading EIA-860M generator data
-- loading the workbook with explicit header handling
-- applying a strict battery-only classifier
-- producing generator-level and plant-level internal outputs
-- separating operating, planned, retired, and canceled/postponed records
-- maintaining validation gates before public-facing claims
+## What this project produces
+
+The repository includes public, source-boundary constrained outputs:
+
+- `outputs/active_operating_by_state.csv`
+- `outputs/planned_pipeline_by_state.csv`
+- `outputs/strict_all_statuses_by_status.csv`
+
+These outputs are derived from a strict EIA-860M battery classifier and separated by project status.
+
+## Why this matters
+
+EIA-860M generator data includes multiple storage-related technologies and project statuses. Treating all storage-related records as active battery deployment can create misleading results.
+
+This project therefore separates:
+
+- operating battery records
+- planned battery records
+- retired records
+- canceled or postponed records
+- non-battery storage technologies where identifiable
 
 ## Current classifier boundary
 
-The current strict classifier is designed to include battery records only when the source fields support a battery classification.
+The current public baseline uses a strict battery-only rule.
 
-The current workflow does not treat all storage technologies as batteries.
+Battery records are included only when the EIA source fields support battery classification through:
 
-Excluded or separated technologies include non-battery storage categories such as pumped storage and flywheels.
+- EIA technology classified as `Batteries`
+- battery-code signals where available
 
-## What this project does not claim
+The current public baseline does not use broad text matching as the accepted output basis.
 
-This project does not currently claim:
+## Public outputs
 
-- definitive U.S. battery market size
-- final validated deployment totals
-- investment implications
-- policy conclusions
-- grid-stress conclusions
-- forecasts
-- market opportunity rankings
+### `outputs/active_operating_by_state.csv`
 
-## Repository status
+State-level summary of strict battery records with operating status.
 
-The current repository state supports limited technical documentation only.
+### `outputs/planned_pipeline_by_state.csv`
 
-Charts, dashboards, market-size claims, and executive summaries are not part of the current public scope.
+State-level summary of strict battery records with planned status.
 
-## Documentation
+### `outputs/strict_all_statuses_by_status.csv`
 
-- docs/SOURCE_BOUNDARY.md
-- docs/METHODOLOGY.md
-- docs/VALIDATION.md
+Status-level summary of all strict battery classifier records.
+
+## Reports
+
+- `reports/VALIDATION_SUMMARY.md`
+- `reports/DATA_DICTIONARY.md`
+- `reports/PUBLIC_RESULTS_BOUNDARY.md`
+- `docs/SOURCE_BOUNDARY.md`
+- `docs/METHODOLOGY.md`
+- `docs/VALIDATION.md`
+
+## Pipeline overview
+
+The pipeline:
+
+1. resolves the EIA-860M generator workbook
+2. downloads the source file
+3. loads selected workbook sheets with explicit header handling
+4. applies a strict battery classifier
+5. writes generator-level classified output
+6. supports internal aggregation and validation views
+7. publishes selected source-boundary constrained summary outputs
+
+## Run the pipeline
+
+```bash
+python run_pipeline.py
+```
+
+The pipeline writes processed files under `data/processed/`.
+
+Raw and processed data are not committed to the repository.
+
+## Interpretation boundary
+
+The public outputs should be read as:
+
+> Based on a strict EIA-860M classifier output, not a final market-total estimate.
+
+This repository does not present forecasts, investment conclusions, policy conclusions, grid-stress scores, or final national deployment totals.
+
+## Current status
+
+The current repository state supports:
+
+- technical review
+- source-boundary review
+- validation review
+- limited public summary outputs
+
+Charts, dashboards, and broader analytical claims are intentionally not included in the current public scope.
