@@ -1,0 +1,29 @@
+﻿# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.venv/
+venv/
+env/
+
+# Local scratch scripts
+_*.py
+
+# Data outputs and downloaded source files
+data/raw/
+data/processed/
+
+# Local/private governance and internal notes
+docs/internal/
+_project_governance/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
