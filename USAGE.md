@@ -16,7 +16,15 @@ Run:
 
 The pipeline resolves an EIA-860M generator workbook, downloads the source file, loads selected sheets, applies the strict battery classifier, and writes processed files under data/processed/.
 
-## 3. Public outputs
+## 3. Run the repository health check
+
+Run:
+
+    python tools/health_check.py
+
+The health check verifies the expected public file surface, scans public documentation for private/internal terms, and checks required imports.
+
+## 4. Public outputs
 
 The repository includes selected public summary outputs under outputs/:
 
@@ -26,7 +34,7 @@ The repository includes selected public summary outputs under outputs/:
 
 These files are committed so reviewers can inspect the current public output layer without rerunning the full pipeline.
 
-## 4. Local generated files
+## 5. Local generated files
 
 Running the pipeline may create or update files under:
 
@@ -35,7 +43,7 @@ Running the pipeline may create or update files under:
 
 These folders are intentionally ignored by Git because they contain downloaded or generated data.
 
-## 5. Interpretation boundary
+## 6. Interpretation boundary
 
 All public output values should be interpreted as:
 
@@ -43,7 +51,7 @@ All public output values should be interpreted as:
 
 The project does not publish forecasts, investment conclusions, policy conclusions, grid-stress scores, or final national deployment totals.
 
-## 6. Recommended review order
+## 7. Recommended review order
 
 1. README.md
 2. docs/SOURCE_BOUNDARY.md
