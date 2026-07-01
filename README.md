@@ -102,3 +102,13 @@ The current repository state supports:
 - limited public summary outputs
 
 Charts, dashboards, and broader analytical claims are intentionally not included in the current public scope.
+## Visual outputs
+
+This project includes source-bounded visual outputs:
+
+- `visuals/active_operating_by_state.png`
+- `visuals/planned_pipeline_by_state.png`
+- `visuals/status_breakdown.png`
+
+See `docs/VISUAL_NOTE.md` for chart captions, sorting rules, status separation, and limitations.
+
